@@ -11,6 +11,8 @@ import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ListView from "./components/ListView";
+import GridView from "./components/GridView";
 
 const App = () => {
   const theme = {
@@ -51,6 +53,9 @@ const App = () => {
           <Route path="/singleproduct/:id" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<ErrorPage />} />
+          <Route path="/grid" element={<ListView />} />
+          <Route path="/list" element={<GridView />} />
+
         </Routes>
         <Footer />
       </Router>

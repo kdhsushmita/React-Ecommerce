@@ -13,6 +13,7 @@ const initialState = {
     singleProduct: {}
 }
 
+
 const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const getProducts = async () => {
