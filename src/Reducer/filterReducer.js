@@ -44,6 +44,44 @@ const filterReducer = (state, action) => {
                 ...state,
                 filter_products: newSortData
             }
+        case "UPDATE_FILTERS_VALUE":
+            const { name, value } = action.payload; //name ra value leko
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    [name]: value   //name --- text ani value---user le j lekhya
+                }
+            }
+        case "FILTER_PRODUCTS":
+            let { all_products } = state;
+            //all product bitra api ko sab data cha
+            let tempFilterProduct = [...all_products];
+            const { text, category, company } = state.filters;
+            //text ko value change huda yo if chalcha
+            if (text) {
+                tempFilterProduct = tempFilterProduct.filter((curElem) => {
+                    //name ko basis ma search garne bhaye name leko
+                    return curElem.name.toLowerCase().includes(text)
+                })
+            }
+            //category ko value change huda yo chalcha
+            if (category !== "all") {
+                tempFilterProduct = tempFilterProduct.filter((curElem) => {
+                    return curElem.category === category
+                })
+            }
+            if (company !== "all") {
+                tempFilterProduct = tempFilterProduct.filter(
+                    (curElem) => curElem.company.toLowerCase() === company.toLowerCase()
+                );
+            }
+            return {
+                ...state,
+                filter_products: tempFilterProduct
+                //ani filtered data mathi bata filter method use 
+                //bhayera filter_products ma aaucha
+            }
         default:
             return state;
     }
