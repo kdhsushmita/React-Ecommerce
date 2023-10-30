@@ -1,20 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useFilterContext } from '../Context/filter_context'
+import { FaCheck } from 'react-icons/fa';
 
 const FilterSection = () => {
-  const { filters: { text, category }, updateFilterValue, all_products } = useFilterContext();
+  const { filters: { text, category, color }, updateFilterValue, all_products } = useFilterContext();
 
-  const getUniqueData = (data, property) => {
+  const getUniqueData = (data, attr) => {
     let newVal = data.map((curElem) => {
-      return curElem[property];
+      return curElem[attr];
     }
     )
-    return (newVal = ["all", ...new Set(newVal)]);
-    //repeat hudaina unique value matra aaucha
+    if (attr === "colors") {
+      return (newVal = ["all", ...new Set([].concat(...newVal))]);
+    }
+    else {
+      return (newVal = ["all", ...new Set(newVal)]);
+      //repeat hudaina unique value matra aaucha with set data structure & spread operator
+    }
   }
+
   const categoryOnlyData = getUniqueData(all_products, "category");
   const companyOnlyData = getUniqueData(all_products, "company");
+  const colorOnlyData = getUniqueData(all_products, "colors");
+  //yo pachadi ko color should be equal to db ma bhako color
 
   return (
     <Wrapper>
@@ -45,6 +54,38 @@ const FilterSection = () => {
             }
           </select>
         </form>
+      </div>
+      <div className="filter-colors colors">
+        <h3>Colors</h3>
+        <div className="filter-color-style">
+          {colorOnlyData.map((curColor, index) => {
+            if (curColor === "all") {
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  value={curColor}
+                  name="color"
+                  className="color-all--style"
+                  onClick={updateFilterValue}>
+                  all
+                </button>
+              );
+            }
+            return (
+              <button
+                key={index}
+                type="button"
+                value={curColor}
+                name="color"
+                style={{ backgroundColor: curColor }}
+                className={color === curColor ? "btnStyle active" : "btnStyle"}
+                onClick={updateFilterValue}>
+                {color === curColor ? <FaCheck className='checkStyle' /> : null}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </Wrapper>
   )

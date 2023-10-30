@@ -57,7 +57,7 @@ const filterReducer = (state, action) => {
             let { all_products } = state;
             //all product bitra api ko sab data cha
             let tempFilterProduct = [...all_products];
-            const { text, category, company } = state.filters;
+            const { text, category, company, color } = state.filters;
             //text ko value change huda yo if chalcha
             if (text) {
                 tempFilterProduct = tempFilterProduct.filter((curElem) => {
@@ -75,6 +75,14 @@ const filterReducer = (state, action) => {
                 tempFilterProduct = tempFilterProduct.filter(
                     (curElem) => curElem.company.toLowerCase() === company.toLowerCase()
                 );
+            }
+            if (color !== "all") {  //all nahuda matra chalaune natra all huda kei nagrne
+                tempFilterProduct = tempFilterProduct.filter(
+                    (curElem) => curElem.colors.includes(color)
+                    //total color bhanya --> colors ho 
+                    //ani user le select garya color chai color variable ho 
+                    //colors ma user ko color cha ki chaina bhanera ek ek gardai include le check garcha 
+                )
             }
             return {
                 ...state,
