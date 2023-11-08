@@ -15,13 +15,16 @@ const productReducer = (state, action) => {
             const featureData = action.payload.filter((curElem) => {
                 return curElem.featured === true;
             })
+
             return {
                 ...state,
                 isLoading: false,
-                product: action.payload,
+                product: action.payload,  //product paila empty thyo  initial state ma
+                //aba sabai data haru add bhayo action.payload le garda
                 //with the help of reducer func product ma sab api ko data aaisakyo
-                featureProducts: featureData
+                featureProducts: featureData   //aba featureProducts ma ni filtered out bhayera aako featureData add hune bhayo 
             }
+            
         case "SET_SINGLE_LOADING":
             return {
                 ...state,
@@ -43,5 +46,6 @@ const productReducer = (state, action) => {
             return state;
     }
     return state;
+
 }
 export default productReducer;

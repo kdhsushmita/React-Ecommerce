@@ -5,25 +5,25 @@ import Product from './Product';
 
 
 const FeatureProduct = () => {
-    const { Loading, featureProducts } = useProductContext();
-    if (Loading) {
-        return <>loading...</>
-    }
-    return (
-        <Wrapper className='section'>
-            <div className="container">
-                <div className="intro-data">Check Now</div>
-                <div className="common-heading">
-                    Our Feature Services
-                </div>
-                <div className="grid grid-three-column">
-                    {featureProducts.map((el) => {
-                        return <Product key={el.id} {...el} />
-                    })}
-                </div>
-            </div>
-        </Wrapper>
-    )
+  const { Loading, featureProducts } = useProductContext();
+  if (Loading) {
+    return <>loading...</>
+  }
+  return (
+    <Wrapper className='section'>
+      <div className="container">
+        <div className="intro-data">Check Now</div>
+        <div className="common-heading">
+          Our Feature Services
+        </div>
+        <div className="grid grid-three-column">
+          {featureProducts.map((el) => {
+            return <Product key={el.id} {...el} />
+          })}
+        </div>
+      </div>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.section`

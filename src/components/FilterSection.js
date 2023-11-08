@@ -11,6 +11,7 @@ const FilterSection = () => {
       return curElem[attr];
     }
     )
+    // console.log(newVal) category ko case ma data(allproducts)  ma attr== category ko matra value aaucha newVal ma
     if (attr === "colors") {
       return (newVal = ["all", ...new Set([].concat(...newVal))]);
     }
@@ -20,6 +21,7 @@ const FilterSection = () => {
     }
   }
 
+  //all_products bata category ko matra data lina khojya  --> data,attr
   const categoryOnlyData = getUniqueData(all_products, "category");
   const companyOnlyData = getUniqueData(all_products, "company");
   const colorOnlyData = getUniqueData(all_products, "colors");
@@ -30,7 +32,9 @@ const FilterSection = () => {
       <div className="filter-search">
         <form onSubmit={(e) => e.preventDefault()}>
           <input type="text" name="text"
-            value={text} onChange={updateFilterValue} placeholder='Search' />
+            value={text} //yo value uta filter-context ko initialState ma huncha ani custom
+            //hooks bata lina milcha
+            onChange={updateFilterValue} placeholder='Search' />
         </form>
       </div>
       <div className="filter-category">

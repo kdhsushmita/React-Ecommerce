@@ -8,6 +8,7 @@ import { Button } from "../styles/Button";
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
+  //mobile view ma hamburger ra cross icon lyaune
   const {
     loginWithRedirect,
     logout,
@@ -210,6 +211,7 @@ const Nav = () => {
             </div>
           )}
           {
+
             isAuthenticated ? (<li>
               <Button onClick={() => {
                 logout({
@@ -232,17 +234,22 @@ const Nav = () => {
           </li>
         </ul>
 
+
+        {/* responsive banauna lai */}
         {/* two button for open and close of menu */}
         <div className="mobile-navbar-btn">
           <CgMenu
             name="menu-outline"
             className="mobile-nav-icon"
             onClick={() => setMenuIcon(true)}
+          //true huda active huncha ani menu dekhincha
           />
           <CgClose
             name="close-outline"
             className="mobile-nav-icon close-outline"
             onClick={() => setMenuIcon(false)}
+          //yo cross icon lai click garyo bhane false huncha ani
+          // active class false huncha
           />
         </div>
       </div>

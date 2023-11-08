@@ -3,6 +3,8 @@ const filterReducer = (state, action) => {
         case "LOAD_FILTER_PRODUCTS":
             return {
                 ...state,
+                //... use garera copy leko
+                //filter garne bela original snga kei problem nahos bhanera
                 filter_products: [...action.payload],
                 all_products: [...action.payload]
             }
@@ -16,6 +18,7 @@ const filterReducer = (state, action) => {
                 ...state,
                 grid_view: false
             }
+
         case "GET_SORT_VALUE":
             return {
                 ...state,
@@ -24,7 +27,7 @@ const filterReducer = (state, action) => {
         case "SORTING_PRODUCTS":
             let newSortData;
             const { filter_products, sorting_value } = state;
-            let tempSortProduct = [...filter_products];
+            let tempSortProduct = [...filter_products]; //sabai products haru aayo but copy matra filter haru garne bela original data use nagrne
             const sortingProducts = (a, b) => {
                 if (sorting_value === "lowest") {
                     return a.price - b.price;
@@ -44,18 +47,22 @@ const filterReducer = (state, action) => {
                 ...state,
                 filter_products: newSortData
             }
-        case "UPDATE_FILTERS_VALUE":
+        case "UPDATE_FILTERS_VALUE": //sab category anusar filter garna yei use ganre ho for eg - company color etc
+            //ani sab ko name ra value huncha
             const { name, value } = action.payload; //name ra value leko
+            //form ko name ra value yeta action.payload ma aaisakyo 
             return {
                 ...state,
+                //filters lai update gareko through this payload
                 filters: {
-                    ...state.filters,
+                    ...state.filters, //baki sabai same
+                    //user le k type garyo(search) wa user le category ma k click garyo tyo chai [name] ma through value aaisakyo
                     [name]: value   //name --- text ani value---user le j lekhya
                 }
             }
         case "FILTER_PRODUCTS":
             let { all_products } = state;
-            //all product bitra api ko sab data cha
+            //all products & filter products bitra api ko sab data cha
             let tempFilterProduct = [...all_products];
             const { text, category, company, color } = state.filters;
             //text ko value change huda yo if chalcha
@@ -69,6 +76,7 @@ const filterReducer = (state, action) => {
             if (category !== "all") {
                 tempFilterProduct = tempFilterProduct.filter((curElem) => {
                     return curElem.category === category
+                    //current element ko category mathi ko category snga equal cha bhane
                 })
             }
             if (company !== "all") {
@@ -87,8 +95,8 @@ const filterReducer = (state, action) => {
             return {
                 ...state,
                 filter_products: tempFilterProduct
-                //ani filtered data mathi bata filter method use 
-                //bhayera filter_products ma aaucha
+                //ani filtered data (category ma k select garyo tyo eta aaucha ani tei anusar includes le filter garera dincha) mathi bata filter method use 
+                //bhayera filter_products ma aaucha ani filter_products map grne
             }
         default:
             return state;

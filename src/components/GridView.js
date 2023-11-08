@@ -7,6 +7,8 @@ const GridView = ({ products }) => {
     <Wrapper className="section">
       <div className="container grid grid-three-column">
         {products.map((curElem) => {
+          //tei component ho jas bata tya home page ma 3 ota products dekhako
+          //kinaki tei grid view ho
           return <Product key={curElem.id} {...curElem} />;
         })}
       </div>

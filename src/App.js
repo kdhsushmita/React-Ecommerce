@@ -15,9 +15,11 @@ import ListView from "./components/ListView";
 import GridView from "./components/GridView";
 
 const App = () => {
-  const theme = {
+  //theme ma property haru assign garna milcha ani diff component ma use garna milcha teslai
+  const theme = {  //yo theme bhanne property gloabl style ma use hos bhanera pass garne
+    //common kura pass garna sakincha one major benefit over css
     colors: {
-      heading: "rgb(24 24 29)",
+      heading: "rgb(24 24 29)",   //object ho so key value pair
       text: "rgba(29 ,29, 29, .8)",
       white: "#fff",
       black: " #212529",
@@ -34,14 +36,14 @@ const App = () => {
         "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;",
       shadowSupport: " rgba(0, 0, 0, 0.16) 0px 1px 4px",
     },
-    media: {
+    media: {  //responsive banaune
       mobile: "768px",
       tab: "998px",
     },
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>  {/* // esle wrap grnu parcha styled component use garne */}
       <Router>
         <GlobalStyle />
         <Header />

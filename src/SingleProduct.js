@@ -15,7 +15,7 @@ const API = "https://api.pujakaitem.com/api/products";
 
 const SingleProduct = () => {
   const { getSingleProduct, isSingleLoading, singleProduct } = useProductContext();
-  const { id } = useParams();
+  const { id } = useParams(); //id lina ko lagi for singleProduct
   const {
     id: alias,
     name,
@@ -29,6 +29,7 @@ const SingleProduct = () => {
     image
     // image is an array jo bhitra 4 ota individual image cha
   } = singleProduct;
+  console.log(singleProduct)
   useEffect(() => {
     getSingleProduct(`${API}?id=${id}`);
   }, [])
@@ -37,6 +38,7 @@ const SingleProduct = () => {
   }
   return <Wrapper><PageNavigation title={name} />
     <Container className="container">
+      {/* styled component */}
       <div className="grid grid-two-column">
         <div className="product_images">
           <MyImage imgs={image} />

@@ -61,7 +61,7 @@ const Contact = () => {
               name="username"
               required
               autoComplete="off"
-              value={isAuthenticated ? user.name : " "}
+            // value={isAuthenticated ? user.name : " "}
             />
 
             <input
@@ -70,7 +70,7 @@ const Contact = () => {
               placeholder="Email"
               autoComplete="off"
               required
-              value={isAuthenticated ? user.email : " "}
+            // value={isAuthenticated ? user.email : " "}
             />
 
             <textarea
