@@ -12,11 +12,10 @@ const HeroSection = ({ myData }) => {
           <div className="hero-section-data">
             <p className="intro-data">Welcome to </p>
             <h1> {name} </h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-              atque temporibus veniam doloribus libero ad error omnis voluptates
-              animi! Suscipit sapiente.
-            </p>
+            {/* <p>
+              <b>We are changing the way people shop.</b>
+            </p> */}
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error maiores beatae, repellendus recusandae architecto consequuntur incidunt quod fugiat earum magnam non ipsum voluptates eum omnis eos ex corrupti mollitia quae!</p>
             <NavLink>
               <Button>show now</Button>
             </NavLink>
@@ -24,8 +23,13 @@ const HeroSection = ({ myData }) => {
           {/* our homepage image  */}
           <div className="hero-section-image">
             <figure>
-              <img
+              {/* <img
                 src="images/hero.jpg"
+                alt="hero"
+                className="img-style"
+              /> */}
+              <img
+                src="images/furniture.jpg"
                 alt="hero"
                 className="img-style"
               />

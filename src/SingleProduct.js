@@ -6,12 +6,15 @@ import PageNavigation from "./components/PageNavigation";
 import { Container } from "./Container";
 import MyImage from "./components/MyImage";
 import FormatPrice from './components/FormatPrice'
-import { TbTruckDelivery } from 'react-icons/tb';
+import { TbReplace, TbTruckDelivery } from 'react-icons/tb';
+import { MdSecurity } from 'react-icons/md';
 import Star from "./components/Star";
 import AddToCart from "./AddToCart";
+import { FaShippingFast } from "react-icons/fa";
 
 
-const API = "https://api.pujakaitem.com/api/products";
+// const API = "https://api.pujakaitem.com/api/products";
+const API = "https://course-api.com/react-store-single-product";
 
 const SingleProduct = () => {
   const { getSingleProduct, isSingleLoading, singleProduct } = useProductContext();
@@ -26,10 +29,11 @@ const SingleProduct = () => {
     stock,
     stars,
     reviews,
-    image
+    images
     // image is an array jo bhitra 4 ota individual image cha
   } = singleProduct;
-  console.log(singleProduct)
+  const firstImage = images && images.length > 0 ? images[0].url : null;
+
   useEffect(() => {
     getSingleProduct(`${API}?id=${id}`);
   }, [])
@@ -40,8 +44,27 @@ const SingleProduct = () => {
     <Container className="container">
       {/* styled component */}
       <div className="grid grid-two-column">
-        <div className="product_images">
+        {/* <div className="product_images">
           <MyImage imgs={image} />
+        </div> */}
+        <div className="product_images">
+          <figure>
+            {firstImage && (
+              <img
+                src={firstImage}
+                // className='box-image--style'
+                // className='logo-image'
+                style={{
+                  width: '30vw',
+                  height: 'auto',
+                  display: 'block',
+                  margin: '0 auto',
+                  maxWidth: '100%',
+                }}
+                alt={name}
+              />
+            )}
+          </figure>
         </div>
         <div className="product-data">
           <h2>{name}</h2>
@@ -60,17 +83,20 @@ const SingleProduct = () => {
               <TbTruckDelivery className="warranty-icon" />
               <p>Free Delivery</p>
             </div>
+
             <div className="product-warranty-data">
-              <TbTruckDelivery className="warranty-icon" />
-              <p>Free Delivery</p>
+              <TbReplace className="warranty-icon" />
+              <p>30 Days Replacement</p>
             </div>
+
             <div className="product-warranty-data">
-              <TbTruckDelivery className="warranty-icon" />
-              <p>Thapa Delivered</p>
+              <FaShippingFast className="warranty-icon" />
+              <p>Fast Shipping </p>
             </div>
+
             <div className="product-warranty-data">
-              <TbTruckDelivery className="warranty-icon" />
-              <p>Free Delivery</p>
+              <MdSecurity className="warranty-icon" />
+              <p>2 Year Warranty </p>
             </div>
           </div>
           <div className="product-data-info">
@@ -83,7 +109,6 @@ const SingleProduct = () => {
           <hr />
           {stock > 0 && <AddToCart product={singleProduct} />}
         </div>
-
       </div>
     </Container>
   </Wrapper>;

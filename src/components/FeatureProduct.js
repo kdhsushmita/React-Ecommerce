@@ -14,7 +14,7 @@ const FeatureProduct = () => {
       <div className="container">
         <div className="intro-data">Check Now</div>
         <div className="common-heading">
-          Our Feature Services
+          Our Feature Products
         </div>
         <div className="grid grid-three-column">
           {featureProducts.map((el) => {

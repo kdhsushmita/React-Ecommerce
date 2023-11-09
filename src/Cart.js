@@ -1,9 +1,17 @@
 import styled from "styled-components";
 import { useCartContext } from "./Context/cart_context";
 import CartItem from "./components/CartItem";
+import { NavLink } from "react-router-dom";
+import { Button } from "./styles/Button";
+import FormatPrice from "./components/FormatPrice";
 
 const Cart = () => {
-  const { cart } = useCartContext()
+  const { cart, clearCart, total_price, shipping_fee } = useCartContext()
+  if (cart.length === 0) {
+    return <>
+      <h2>No Item to display</h2>
+    </>
+  }
   return <Wrapper>
     <div className="container">
       <div className="cart_heading grid grid-five-column">
@@ -20,6 +28,36 @@ const Cart = () => {
             return <CartItem key={curElem.id} {...curElem} />
           })
         }
+      </div>
+      <hr />
+      <div className="cart-two-button">
+        <NavLink to="/products">
+          <Button>Continue Shopping</Button>
+        </NavLink>
+        <Button className="btn btn-clear" onClick={clearCart}>Clear Cart</Button>
+      </div>
+      <div className="order-total--amount">
+        <div className="order-total--subdata">
+          <div>
+            <p>subtotal:</p>
+            <p>
+              <FormatPrice price={total_price} />
+            </p>
+          </div>
+          <div>
+            <p>shipping fee</p>
+            <p>
+              <FormatPrice price={shipping_fee} />
+            </p>
+          </div>
+          <hr />
+          <div>
+            <p>order total:</p>
+            <p>
+              <FormatPrice price={total_price + shipping_fee} />
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </Wrapper>;

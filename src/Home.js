@@ -6,7 +6,7 @@ import Trusted from "./components/Trusted";
 
 const Home = () => {
   const data = {
-    name: "Sushmita store",
+    name: "ComfortCrafters",
   };
   const { Loading, featureProducts } = useProductContext();
   console.log(featureProducts)
@@ -14,8 +14,8 @@ const Home = () => {
     <>
       <HeroSection myData={data} />
       <FeatureProduct />
-      <Services />
-      <Trusted />
+      {/* <Services /> */}
+      {/* <Trusted /> */}
     </>
   );
 };

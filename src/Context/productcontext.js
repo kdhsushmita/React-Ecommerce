@@ -21,7 +21,9 @@ const AppProvider = ({ children }) => {
         //suru ma loading huncha
         dispatch({ type: "SET_LOADING" });
         try {
-            const res = await axios.get(`https://api.pujakaitem.com/api/products`);
+            // const res = await axios.get(`https://api.pujakaitem.com/api/products`);
+            const res = await axios.get(`https://course-api.com/react-store-products
+            `);
             const product = await res.data;
             //dispatch type bhanya kaam ani payload bhanya tyo kam garna k data chaincha
             dispatch({ type: "SET_API_DATA", payload: product });
