@@ -1,1 +1,1 @@
-# E-commerce---GadgetStore-UsingReact
+# E-commerce--UsingReact
